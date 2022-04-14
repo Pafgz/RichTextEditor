@@ -6,8 +6,6 @@
 //
 
 import Foundation
-import SwiftUI
-#if !os(macOS)
 import UIKit
 
 @available(iOS 13.0, *)
@@ -20,13 +18,13 @@ final class TextStyleManager: ObservableObject {
     private let italicFont: UIFont
     
     init(text: String?, defaultFont: UIFont = UIFont.systemFont(ofSize: 14), boldFont: UIFont? = UIFont.systemFont(ofSize: 14, weight: .bold), italicFont: UIFont? = nil) {
-        nsString = text?.asAttributedString ?? NSAttributedString()
-        var lastIndex = (text?.count ?? 0)
-        lastIndex = (lastIndex <= 0) ? 0 : lastIndex - 1
-        range = NSRange(location: lastIndex, length: lastIndex)
         self.defaultFont = defaultFont
         self.boldFont = boldFont ?? defaultFont
         self.italicFont = italicFont ?? defaultFont
+        var lastIndex = (text?.count ?? 0)
+        lastIndex = (lastIndex <= 0) ? 0 : lastIndex - 1
+        range = NSRange(location: lastIndex, length: lastIndex)
+        nsString = text?.asAttributedString ?? NSAttributedString()
     }
 
     func changeStyle(_ style: TextStyleType) {
@@ -104,7 +102,6 @@ final class TextStyleManager: ObservableObject {
         nsString = mutableText
     }
 }
-#endif
 
 enum TextStyleType {
     case size(_ size: CGFloat), bold, underline, strikeThrough

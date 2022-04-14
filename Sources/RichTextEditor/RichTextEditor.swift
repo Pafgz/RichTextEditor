@@ -7,36 +7,33 @@
 
 import Foundation
 import SwiftUI
-#if !os(macOS)
-import UIKit
 
 @available(iOS 13.0, *)
 struct RichText: View {
-    @State private var nsStr: NSAttributedString
-    @State private var range = NSRange(location: 0, length: 0)
+
+    private let textStyleManager: TextStyleManager
 
     private var font: UIFont?
 
     init(text: String?, font: UIFont? = UIFont.systemFont(ofSize: 14)) {
-        nsStr = text?.asAttributedString ?? NSAttributedString()
         self.font = font
+        textStyleManager = TextStyleManager(text: text)
     }
 
     var body: some View {
-        RichTextEditor(text: $nsStr, range: $range, font: font, isEditable: false)
+        RichTextEditor(textStyleManager: textStyleManager, font: font, isEditable: false)
     }
 }
 
 @available(iOS 13.0, *)
 struct RichTextEditor: View {
-    @Binding var text: NSAttributedString
-    @Binding var range: NSRange
+    @ObservedObject var textStyleManager: TextStyleManager
     var font: UIFont?
     var isEditable = true
     var onTextSelected: ((NSRange) -> Void)?
 
     var body: some View {
-        UIRichTextEditor(text: $text, range: $range, font: font, isEditable: isEditable)
+        UIRichTextEditor(text: $textStyleManager.nsString, range: $textStyleManager.range, font: font, isEditable: isEditable)
             .padding(.horizontal, 16)
             .padding(.top, 24)
             .padding(.bottom, 15)
@@ -91,18 +88,16 @@ struct RichTextEditor: View {
     }
 }
 
-#endif
-
-
 @available(iOS 13.0, *)
 extension String {
+
     var asAttributedString: NSAttributedString? {
         let data = Data(utf8)
         do {
             let attributedString = try NSAttributedString(data: data, options: [.documentType: NSAttributedString.DocumentType.html], documentAttributes: nil)
             return attributedString
         } catch let error as NSError {
-            print(error)
+            print("\(error)")
             return nil
         }
     }
