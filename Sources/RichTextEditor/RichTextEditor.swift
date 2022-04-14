@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 @available(iOS 13.0, *)
-struct RichText: View {
+public struct RichText: View {
 
     private let textStyleManager: TextStyleManager
 
@@ -20,19 +20,19 @@ struct RichText: View {
         textStyleManager = TextStyleManager(text: text)
     }
 
-    var body: some View {
+    public var body: some View {
         RichTextEditor(textStyleManager: textStyleManager, font: font, isEditable: false)
     }
 }
 
 @available(iOS 13.0, *)
-struct RichTextEditor: View {
+public struct RichTextEditor: View {
     @ObservedObject var textStyleManager: TextStyleManager
     var font: UIFont?
     var isEditable = true
     var onTextSelected: ((NSRange) -> Void)?
 
-    var body: some View {
+    public var body: some View {
         UIRichTextEditor(text: $textStyleManager.nsString, range: $textStyleManager.range, font: font, isEditable: isEditable)
             .padding(.horizontal, 16)
             .padding(.top, 24)
@@ -91,7 +91,7 @@ struct RichTextEditor: View {
 @available(iOS 13.0, *)
 extension String {
 
-    var asAttributedString: NSAttributedString? {
+    public var asAttributedString: NSAttributedString? {
         let data = Data(utf8)
         do {
             let attributedString = try NSAttributedString(data: data, options: [.documentType: NSAttributedString.DocumentType.html], documentAttributes: nil)
@@ -105,7 +105,7 @@ extension String {
 
 @available(iOS 13.0, *)
 extension NSAttributedString {
-    var asHtml: String? {
+    public var asHtml: String? {
         let documentAttributes = [NSAttributedString.DocumentAttributeKey.documentType: NSAttributedString.DocumentType.html]
         do {
             let htmlData = try data(from: NSMakeRange(0, length), documentAttributes: documentAttributes)

@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 @available(iOS 13.0, *)
-final class TextStyleManager: ObservableObject {
+public class TextStyleManager: ObservableObject {
     @Published var nsString: NSAttributedString
     @Published var range: NSRange
     
@@ -103,6 +103,6 @@ final class TextStyleManager: ObservableObject {
     }
 }
 
-enum TextStyleType {
+public enum TextStyleType {
     case size(_ size: CGFloat), bold, underline, strikeThrough
 }
