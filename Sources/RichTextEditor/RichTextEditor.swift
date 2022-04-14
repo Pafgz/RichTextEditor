@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 @available(iOS 13.0, *)
-public struct RichText: View {
+struct RichText: View {
 
     private let textStyleManager: TextStyleManager
 
@@ -26,7 +26,7 @@ public struct RichText: View {
 }
 
 @available(iOS 13.0, *)
-public struct RichTextEditor: View {
+struct RichTextEditor: View {
     @ObservedObject var textStyleManager: TextStyleManager
     var font: UIFont?
     var isEditable = true
@@ -91,7 +91,7 @@ public struct RichTextEditor: View {
 @available(iOS 13.0, *)
 extension String {
 
-    public var asAttributedString: NSAttributedString? {
+    var asAttributedString: NSAttributedString? {
         let data = Data(utf8)
         do {
             let attributedString = try NSAttributedString(data: data, options: [.documentType: NSAttributedString.DocumentType.html], documentAttributes: nil)
@@ -105,7 +105,7 @@ extension String {
 
 @available(iOS 13.0, *)
 extension NSAttributedString {
-    public var asHtml: String? {
+    var asHtml: String? {
         let documentAttributes = [NSAttributedString.DocumentAttributeKey.documentType: NSAttributedString.DocumentType.html]
         do {
             let htmlData = try data(from: NSMakeRange(0, length), documentAttributes: documentAttributes)

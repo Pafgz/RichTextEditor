@@ -103,6 +103,6 @@ final class TextStyleManager: ObservableObject {
     }
 }
 
-public enum TextStyleType {
+enum TextStyleType {
     case size(_ size: CGFloat), bold, underline, strikeThrough
 }
