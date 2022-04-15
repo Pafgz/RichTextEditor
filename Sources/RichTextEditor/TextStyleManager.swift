@@ -61,7 +61,6 @@ public class TextStyleManager: ObservableObject {
         mutableText.enumerateAttribute(.font, in: range) { value, range, stop in
             if let font = value as? UIFont {
                 let size = font.pointSize
-                // make sure this font is actually bold
                 let isBold = font.fontDescriptor.symbolicTraits.contains(.traitBold)
                 mutableText
                     .addAttribute(
