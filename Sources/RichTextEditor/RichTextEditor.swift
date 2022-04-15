@@ -15,7 +15,7 @@ public struct RichText: View {
 
     private var font: UIFont?
 
-    init(text: String?, font: UIFont? = UIFont.systemFont(ofSize: 14)) {
+    public init(text: String?, font: UIFont? = UIFont.systemFont(ofSize: 14)) {
         self.font = font
         textStyleManager = TextStyleManager(text: text)
     }
