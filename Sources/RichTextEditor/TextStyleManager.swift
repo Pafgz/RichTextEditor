@@ -10,8 +10,8 @@ import UIKit
 
 @available(iOS 13.0, *)
 public class TextStyleManager: ObservableObject {
-    @Published var nsString: NSAttributedString
-    @Published var range: NSRange
+    @Published public var nsString: NSAttributedString
+    @Published public var range: NSRange
     
     private let defaultFont: UIFont
     private let boldFont: UIFont
