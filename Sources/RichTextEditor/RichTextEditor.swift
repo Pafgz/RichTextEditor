@@ -27,10 +27,10 @@ public struct RichText: View {
 
 @available(iOS 13.0, *)
 public struct RichTextEditor: View {
-    @ObservedObject var textStyleManager: TextStyleManager
-    var font: UIFont?
-    var isEditable = true
-    var onTextSelected: ((NSRange) -> Void)?
+    @ObservedObject public var textStyleManager: TextStyleManager
+    var public font: UIFont?
+    var public isEditable = true
+    var public onTextSelected: ((NSRange) -> Void)?
 
     public var body: some View {
         UIRichTextEditor(text: $textStyleManager.nsString, range: $textStyleManager.range, font: font, isEditable: isEditable)
