@@ -17,7 +17,7 @@ public class TextStyleManager: ObservableObject {
     private let boldFont: UIFont
     private let italicFont: UIFont
     
-    init(text: String?, defaultFont: UIFont = UIFont.systemFont(ofSize: 14), boldFont: UIFont? = UIFont.systemFont(ofSize: 14, weight: .bold), italicFont: UIFont? = nil) {
+    public init(text: String?, defaultFont: UIFont = UIFont.systemFont(ofSize: 14), boldFont: UIFont? = UIFont.systemFont(ofSize: 14, weight: .bold), italicFont: UIFont? = nil) {
         self.defaultFont = defaultFont
         self.boldFont = boldFont ?? defaultFont
         self.italicFont = italicFont ?? defaultFont
@@ -27,7 +27,7 @@ public class TextStyleManager: ObservableObject {
         nsString = text?.asAttributedString ?? NSAttributedString()
     }
 
-    func changeStyle(_ style: TextStyleType) {
+    public func changeStyle(_ style: TextStyleType) {
         switch style {
         case let .size(size):
             changeSize(size: size)
