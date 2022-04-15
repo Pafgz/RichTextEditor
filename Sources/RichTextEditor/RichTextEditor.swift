@@ -32,7 +32,7 @@ public struct RichTextEditor: View {
     private var isEditable = true
     private var onTextSelected: ((NSRange) -> Void)?
     
-    public init(textStyleManager: TextStyleManager, font: UIFont?, isEditable: Bool = true, onTextSelected: ((NSRange) -> Void)? = nil) {
+    public init(textStyleManager: TextStyleManager, font: UIFont? = nil, isEditable: Bool = true, onTextSelected: ((NSRange) -> Void)? = nil) {
         self.textStyleManager = textStyleManager
         self.font = font
         self.isEditable = isEditable
